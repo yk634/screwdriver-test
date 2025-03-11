@@ -19,7 +19,7 @@ stages:
     requires: [ ~commit ]
     sourcePaths: [ "!README.md", "!fuga.txt" ]
   bar:
-    jobs: [ a, b ]
+    jobs: [ c, d ]
     requires: [ ~commit ]
     sourcePaths: [ "!README.md", "!fuga.txt" ]
     setup:
