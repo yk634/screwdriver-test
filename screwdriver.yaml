@@ -17,10 +17,10 @@ stages:
   foo:
     jobs: [ a, b ]
     requires: [ ~commit ]
-    sourcePaths: [ "!README.md", "!fuga.txt" ]
+    sourcePaths: [ "README.md", "fuga.txt" ]
   bar:
     jobs: [ c, d ]
     requires: [ ~commit ]
-    sourcePaths: [ "!README.md", "!fuga.txt" ]
+    sourcePaths: [ "README.md", "fuga.txt" ]
     setup:
-      sourcePaths: [ "README.md", "fuga.txt" ]
+      sourcePaths: [ "!README.md", "!fuga.txt" ]
