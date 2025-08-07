@@ -1,0 +1,19 @@
+shared:
+  image: node:22
+
+jobs:
+  warn:
+    requires: [ ~commit ]
+    steps:
+      - warn: meta set build.warning.message "this is a warning message"
+
+  success:
+    requires: [ ~commit ]
+    steps:
+      - echo: echo hoge
+
+  fail:
+    requires: [ ~commit ]
+    steps:
+      - exit: exit 1
+
