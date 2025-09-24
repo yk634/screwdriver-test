@@ -4,8 +4,8 @@ jobs:
     main:
         steps:
             - debug: |
-                echo "$SD_API_URL/events/$SD_EVENT_ID"
-                curl -v -s -H 'accept: application/json' -H "Authorization:Bearer $SD_TOKEN" $SD_API_URL/events/$SD_EVENT_ID
+                echo "${SD_API_URL}/events/${SD_EVENT_ID}"
+                curl -v -s -H 'accept: application/json' -H "Authorization:Bearer $SD_TOKEN" ${SD_API_URL}/events/${SD_EVENT_ID}
                 echo $EXTERNAL_JOB
             - get-upstream-job: |
                 EXTERNAL_JOB=$(curl -s -H 'accept: application/json' -H "Authorization:Bearer $SD_TOKEN" $SD_API_URL/events/$SD_EVENT_ID | jq -r '.startFrom | ltrimstr("~")')
