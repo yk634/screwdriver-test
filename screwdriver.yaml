@@ -3,4 +3,4 @@ jobs:
     image: node:20
     requires: [ ~commit ]
     steps:
-      - jq: jq -version
+      - jq: jq -v
