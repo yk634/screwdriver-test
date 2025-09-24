@@ -1,9 +1,29 @@
 shared:
     image: node:20
 jobs:
-    trigger:
-        parameters:
-            externalParam: "external_parameter" # Check if external trigger parameter can be referenced in downstream build
+    main:
         steps:
-            - metaset: meta set externalMeta "external_meta" # Check if external trigger metadata can be referenced in downstream build
-        requires: [ ~commit ]
+            - get-upstream-job: |
+                EXTERNAL_JOB=$(curl -s -H 'accept: application/json' -H "Authorization:Bearer $SD_TOKEN" $SD_API_URL/events/$SD_EVENT_ID | jq -r '.startFrom | ltrimstr("~")')
+                echo $EXTERNAL_JOB
+            - metatest1: test "external_parameter" = `meta get parameters.externalParam.value --external $EXTERNAL_JOB --skip-fetch`
+            - metatest2: test "external_meta" = `meta get "externalMeta" --external $EXTERNAL_JOB --skip-fetch`
+        requires: [ ~sd@15875:trigger ]    
+    parallel1:
+        steps:
+            - echo: echo test
+        requires: [ main ]
+        annotations:
+            screwdriver.cd/virtualJob: true
+    parallel2:
+        steps:
+            - echo: echo test
+        requires: [ main ]
+        annotations:
+            screwdriver.cd/virtualJob: true
+    join:
+        steps:
+            - echo: echo test
+        requires: [parallel1, parallel2]
+        annotations:
+            screwdriver.cd/virtualJob: true
