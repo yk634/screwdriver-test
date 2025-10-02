@@ -19,24 +19,3 @@ jobs:
 
   hub-c:
     requires: [ ~main ]
-
-  join-a:
-    requires: [ sd@15876:a ]
-
-  join-b:
-    requires: [ sd@15876:b ]
-
-  join-c:
-    requires: [ sd@15876:c ]
-
-  join-a-b:
-    requires: [ sd@15876:a, sd@15876:b ]
-
-  join-b-c:
-    requires: [ sd@15876:b, sd@15876:c ]
-
-  same-pipeline-from-virtual:
-    requires: [ ~sd@15875:main ]
-
-  same-pipeline-from-normal:
-    requires: [ ~sd@15875:hub-a ]
