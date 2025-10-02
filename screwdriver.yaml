@@ -1,9 +1,42 @@
 shared:
-    image: node:20
+  image: node:20
+  steps:
+    - echo: echo hoge
+  environment:
+    SD_SKIP_REPOSITORY_CLONE: true
+
 jobs:
-    trigger:
-        parameters:
-            externalParam: "external_parameter" # Check if external trigger parameter can be referenced in downstream build
-        steps:
-            - metaset: meta set externalMeta "external_meta" # Check if external trigger metadata can be referenced in downstream build
-        requires: [ ~commit ]
+  main:
+    requires: [ ~commit ]
+    annotations:
+      screwdriver.cd/virtualJob: true
+
+  hub-a:
+    requires: [ ~main ]
+
+  hub-b:
+    requires: [ ~main ]
+
+  hub-c:
+    requires: [ ~main ]
+
+  join-a:
+    requires: [ sd@15876:a ]
+
+  join-b:
+    requires: [ sd@15876:b ]
+
+  join-c:
+    requires: [ sd@15876:c ]
+
+  join-a-b:
+    requires: [ sd@15876:a, sd@15876:b ]
+
+  join-b-c:
+    requires: [ sd@15876:b, sd@15876:c ]
+
+  same-pipeline-from-virtual:
+    requires: [ ~sd@15875:main ]
+
+  same-pipeline-from-normal:
+    requires: [ ~sd@15875:hub-a ]
