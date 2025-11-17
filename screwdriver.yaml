@@ -6,10 +6,10 @@ shared:
     SD_SKIP_REPOSITORY_CLONE: true
 
 jobs:
-  c:
+  b:
     requires: [ ~sd@15875:a ]
 
-  f:
+  d:
     requires: [ sd@15875:a ]
     annotations:
       screwdriver.cd/virtualJob: true
