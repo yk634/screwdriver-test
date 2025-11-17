@@ -6,16 +6,20 @@ shared:
     SD_SKIP_REPOSITORY_CLONE: true
 
 jobs:
-  main:
+  a:
     requires: [ ~commit ]
+
+  d:
+    requires: []
     annotations:
       screwdriver.cd/virtualJob: true
 
-  hub-a:
-    requires: [ ~main ]
+  e:
+    requires: [ sd@15875:a ]
+    annotations:
+      screwdriver.cd/virtualJob: true
 
-  hub-b:
-    requires: [ ~main ]
-
-  hub-c:
-    requires: [ ~main ]
+stages:
+  stg:
+    jobs: [ d ]
+    requires: [ b, sd@15876:c ]
