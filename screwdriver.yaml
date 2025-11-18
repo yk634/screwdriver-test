@@ -10,6 +10,6 @@ jobs:
     requires: [ ~sd@15875:a ]
 
   d:
-    requires: [ sd@15875:a ]
+    requires: [ sd@15875:b ]
     annotations:
       screwdriver.cd/virtualJob: true
