@@ -6,13 +6,11 @@ shared:
     SD_SKIP_REPOSITORY_CLONE: true
 
 jobs:
-  a:
+  z:
     requires: [ ~commit ]
-    steps:
-      - sleep: sleep 30
 
-  b:
-    requires: [ ~commit ]
+  a:
+    requires: [ ~z ]
 
   c:
     requires: []
