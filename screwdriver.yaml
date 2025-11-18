@@ -9,7 +9,7 @@ jobs:
   a:
     requires: [ ~commit ]
     steps:
-      - sleep: sleep 10
+      - sleep: sleep 30
 
   b:
     requires: [ ~commit ]
