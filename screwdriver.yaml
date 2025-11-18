@@ -1,0 +1,36 @@
+shared:
+  image: node:22
+  steps:
+    - echo: echo hoge
+  environment:
+    SD_SKIP_REPOSITORY_CLONE: true
+
+jobs:
+  aaa:
+    requires: [ ~pr ]
+
+  not-aaa:
+    requires: [ ~pr ]
+
+  xxx:
+    requires: [ ~pr ]
+
+  not-xxx:
+    requires: [ ~pr ]
+
+  ccc:
+    requires: []
+
+  ddd:
+    requires: []
+
+stages:
+  cccddd:
+    jobs: [ ccc, ddd ]
+    requires: [ ~pr ]
+    setup:
+      steps:
+        - echo: echo hoge
+    teardown:
+      steps:
+        - echo: echo hoge
