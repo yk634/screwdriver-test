@@ -8,6 +8,11 @@ shared:
 jobs:
   a:
     requires: [ ~commit ]
+    steps:
+      - sleep: sleep 10
+
+  b:
+    requires: [ ~commit ]
 
   c:
     requires: []
