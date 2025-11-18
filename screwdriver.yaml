@@ -24,9 +24,15 @@ jobs:
   ddd:
     requires: []
 
+  not-ccc:
+    requires: []
+
+  not-ddd:
+    requires: []
+
 stages:
   cccddd:
-    jobs: [ ccc, ddd ]
+    jobs: [ ccc, ddd, not-ccc, not-ddd ]
     requires: [ ~pr ]
     setup:
       steps:
