@@ -17,6 +17,9 @@ jobs:
     annotations:
       screwdriver.cd/virtualJob: true
 
+  d:
+    requires: [ ~c ]
+
   e:
     requires: [ sd@15875:a ]
     annotations:
