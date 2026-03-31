@@ -6,10 +6,7 @@ shared:
     - echo hoge
 
 jobs:
-  job2:
+  job3:
     requires:
-      - sd@15989:job1
-      - for-join
-
-  for-join:
-    requires: []
+      - ~sd@15989:job1
+      - ~sd@15990:job2
