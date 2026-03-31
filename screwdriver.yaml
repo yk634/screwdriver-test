@@ -3,4 +3,4 @@ jobs:
     image: node:22
     requires: [ ~commit, ~pr ]
     steps:
-      - echo: echo hoge
+      - env: env
