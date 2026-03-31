@@ -1,24 +1,14 @@
 shared:
-    image: node:22
-    steps:
-      - echo: echo hoge
+  image: node:22
+  environment:
+    SD_SKIP_REPOSITORY_CLONE: true
+  steps:
+    - echo hoge
 
 jobs:
   job1:
-    requires: [~commit]
+    requires: []
 
-  job2:
-    requires: [~commit]
-    steps:
-      - sleep 60
-
-  vjob1:
-    requires: [~job1]
-    annotations:
-      screwdriver.cd/virtualJob: true
-    blockedBy: [ ~job2 ]
-
-  vjob2:
-    requires: [ ~job1 ]
-    annotations:
-      screwdriver.cd/virtualJob: true
+  job4:
+    requires:
+      - sd@15991:job3
