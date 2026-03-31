@@ -5,42 +5,20 @@ shared:
 
 jobs:
   job1:
-    requires: [ ~commit, ~pr ]
+    requires: [~commit]
+
   job2:
-    requires: [ ~commit, ~pr ]
-  job3:
-    requires: [ ~commit, ~pr ]
-  job4:
-    requires: [ ~commit, ~pr ]
-  job5:
-    requires: [ ~commit, ~pr ]
-  job6:
-    requires: [ ~commit, ~pr ]
-  job7:
-    requires: [ ~commit, ~pr ]
-  job8:
-    requires: [ ~commit, ~pr ]
-  job9:
-    requires: [ ~commit, ~pr ]
-  job10:
-    requires: [ ~commit, ~pr ]
-  job11:
-    requires: [ ~commit, ~pr ]
-  job12:
-    requires: [ ~commit, ~pr ]
-  job13:
-    requires: [ ~commit, ~pr ]
-  job14:
-    requires: [ ~commit, ~pr ]
-  job15:
-    requires: [ ~commit, ~pr ]
-  job16:
-    requires: [ ~commit, ~pr ]
-  job17:
-    requires: [ ~commit, ~pr ]
-  job18:
-    requires: [ ~commit, ~pr ]
-  job19:
-    requires: [ ~commit, ~pr ]
-  job20:
-    requires: [ ~commit, ~pr ]
+    requires: [~commit]
+    steps:
+      - sleep 60
+
+  vjob1:
+    requires: [~job1]
+    annotations:
+      screwdriver.cd/virtualJob: true
+    blockedBy: [ ~job2 ]
+
+  vjob2:
+    requires: [ ~job1 ]
+    annotations:
+      screwdriver.cd/virtualJob: true
