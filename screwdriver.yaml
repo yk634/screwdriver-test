@@ -10,7 +10,7 @@ jobs:
   job2:
     requires: [~commit]
     steps:
-      - sleep 60
+      - sleep 10
 
   vjob1:
     requires: [~job1]
@@ -22,3 +22,6 @@ jobs:
     requires: [ ~job1 ]
     annotations:
       screwdriver.cd/virtualJob: true
+
+  job3:
+    requires: [ ~vjob1 ]
