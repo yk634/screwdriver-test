@@ -1,0 +1,6 @@
+jobs:
+  main:
+    image: node:22
+    requires: [ ~commit, ~pr ]
+    steps:
+      - env: env
