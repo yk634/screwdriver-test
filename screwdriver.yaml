@@ -1,0 +1,9 @@
+jobs:
+  main:
+    image: node:22
+    steps:
+      - fail: hoge
+    settings:
+      email:
+        addresses:
+          - yukaneda@lycorp.co.jp
