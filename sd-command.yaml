@@ -3,7 +3,6 @@ name: js-yaml-v5-command
 version: "1.0"
 description: Command for testing js-yaml v5
 maintainer: yk634@example.com
-format: docker
-docker:
-  image: node:22
-  command: node
+format: binary
+binary:
+  file: ./test.sh
