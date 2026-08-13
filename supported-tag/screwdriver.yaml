@@ -1,0 +1,34 @@
+shared: &shared-job
+  image: node:22
+  environment:
+    YAML_MERGE_SHARED: inherited-from-anchor
+
+jobs:
+  verify-js-yaml-v4:
+    <<: *shared-job
+    environment:
+      YAML_TIMESTAMP_UNQUOTED: 2026-08-01
+      YAML_TIMESTAMP_QUOTED: "2026-08-01"
+      YAML_BINARY: !!binary SGVsbG8=
+      YAML_OMAP: !!omap
+        - first: 1
+        - second: 2
+      YAML_PAIRS: !!pairs
+        - duplicate: 1
+        - duplicate: 2
+      # YAML_SET: !!set
+      #   alpha:
+      #   beta:
+      # YAML_LEGACY_MAP:
+      #   ? [foo, bar]
+      #   : value
+    steps:
+      - inspect: |
+          node -e '
+            const names = Object.keys(process.env)
+              .filter(name => name.startsWith("YAML_"))
+              .sort();
+            for (const name of names) {
+              console.log(`${name}=${JSON.stringify(process.env[name])}`);
+            }
+          '
