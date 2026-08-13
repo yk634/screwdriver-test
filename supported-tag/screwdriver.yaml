@@ -17,12 +17,12 @@ jobs:
       YAML_PAIRS: !!pairs
         - duplicate: 1
         - duplicate: 2
-      YAML_SET: !!set
-        alpha:
-        beta:
-      # YAML_LEGACY_MAP:
-      #   ? [foo, bar]
-      #   : value
+      # YAML_SET: !!set
+      #   alpha:
+      #   beta:
+      YAML_LEGACY_MAP:
+        ? [foo, bar]
+        : value
     steps:
       - inspect: |
           node -e '
