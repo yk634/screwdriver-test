@@ -1,0 +1,28 @@
+shared:
+  image: node:22
+
+jobs:
+  command:
+    requires: [~pr, ~commit]
+    steps:
+      - validate: sd-cmd validate -f sd-command.yaml
+      - publish: sd-cmd publish -f sd-command.yaml
+      - execute: sd-cmd exec yk634/js-yaml-v5-command@1 --version
+
+  job-template:
+    requires: [~pr, ~commit]
+    environment:
+      SD_TEMPLATE_PATH: ./screwdriver-template.yaml
+    steps:
+      - install: npm install screwdriver-template-main
+      - validate: ./node_modules/.bin/template-validate
+      - publish: ./node_modules/.bin/template-publish
+
+  pipeline-template:
+    requires: [~pr, ~commit]
+    environment:
+      SD_TEMPLATE_PATH: ./screwdriver-pipeline-template.yaml
+    steps:
+      - install: npm install screwdriver-template-main
+      - validate: ./node_modules/.bin/pipeline-template-validate
+      - publish: ./node_modules/.bin/pipeline-template-publish

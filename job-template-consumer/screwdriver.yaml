@@ -1,0 +1,4 @@
+jobs:
+  main:
+    requires: [~pr, ~commit]
+    template: yk634/js-yaml-v5-job-template@1

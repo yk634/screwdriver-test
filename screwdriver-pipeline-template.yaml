@@ -1,0 +1,11 @@
+namespace: yk634
+name: js-yaml-v5-pipeline-template
+version: "1.0"
+description: Pipeline template for testing js-yaml v5
+maintainer: yk634@example.com
+config:
+  jobs:
+    main:
+      image: node:22
+      steps:
+        - test: echo pipeline-template-ok

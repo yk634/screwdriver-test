@@ -1,0 +1,9 @@
+namespace: yk634
+name: js-yaml-v5-job-template
+version: "1.0"
+description: Job template for testing js-yaml v5
+maintainer: yk634@example.com
+config:
+  image: node:22
+  steps:
+    - test: echo job-template-ok
