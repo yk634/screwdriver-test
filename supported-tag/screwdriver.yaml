@@ -6,6 +6,7 @@ shared: &shared-job
 jobs:
   verify-js-yaml-v4:
     <<: *shared-job
+    requires: [~commit]
     environment:
       YAML_TIMESTAMP_UNQUOTED: 2026-08-01
       YAML_TIMESTAMP_QUOTED: "2026-08-01"
