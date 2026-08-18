@@ -7,7 +7,7 @@ jobs:
     steps:
       - verify: |
           echo "PWD=$PWD"
-          test "$(basename "$PWD")" = "for'bar"
+          test "$(basename "$PWD")" = "foo'bar"
 
   skip-checkout:
     requires: [~commit]
@@ -16,4 +16,4 @@ jobs:
     steps:
       - verify: |
           echo "PWD=$PWD"
-          test "$(basename "$PWD")" = "for'bar"
+          test "$(basename "$PWD")" = "foo'bar"
