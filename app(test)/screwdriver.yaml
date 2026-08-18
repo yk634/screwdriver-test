@@ -1,0 +1,20 @@
+shared:
+  image: node:22
+
+jobs:
+  default-checkout:
+    requires: [~commit, ~pr]
+    steps:
+      - verify: |
+          echo "PWD=$PWD"
+          test "$(basename "$PWD")" = 'app(test)'
+          test -f marker.txt
+
+  skip-checkout:
+    requires: [~commit]
+    environment:
+      SD_SKIP_REPOSITORY_CLONE: true
+    steps:
+      - verify: |
+          echo "PWD=$PWD"
+          test "$(basename "$PWD")" = 'app(test)'
