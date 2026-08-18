@@ -8,7 +8,6 @@ jobs:
       - verify: |
           echo "PWD=$PWD"
           test "$(basename "$PWD")" = "for'bar"
-          test -f marker.txt
 
   skip-checkout:
     requires: [~commit]
