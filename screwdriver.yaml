@@ -1,0 +1,37 @@
+annotations:
+  screwdriver.cd/chainPR: true
+
+parameters:
+  target: [test, staging]
+  message:
+    value: "hogehoge"
+    description: "Value used to verify the parameterized Start dialog"
+
+shared:
+  image: node:22
+  steps:
+    - verify: |
+        echo "target=$(meta get parameters.target)"
+        echo "message=$(meta get parameters.message)"
+        echo "verification completed"
+  environment:
+    SD_SKIP_REPOSITORY_CLONE: true
+
+jobs:
+  regular:
+    description: "Standalone job used to verify Start and Restart actions"
+    requires: [~commit, ~pr]
+
+  stage-first:
+    description: "First stage job used to verify workflow tooltip actions"
+    requires: []
+
+  stage-second:
+    description: "Second stage job used to verify workflow tooltip actions"
+    requires: [stage-first]
+
+stages:
+  verification:
+    description: "Stage used to verify actions while the pipeline is disabled"
+    requires: [~commit, ~pr]
+    jobs: [stage-first, stage-second]
