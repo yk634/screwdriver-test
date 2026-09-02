@@ -1,7 +1,7 @@
-# childPipelines:
-#   scmUrls:
-#     - git@github.com:yk634/screwdriver-test.git#external-config-deleted:dir1
-#     - git@github.com:yk634/screwdriver-test.git#external-config-deleted:dir2
+childPipelines:
+  scmUrls:
+    - git@github.com:yk634/screwdriver-test.git#external-config-deleted:dir1
+    - git@github.com:yk634/screwdriver-test.git#external-config-deleted:dir2
  
 jobs:
   test:
