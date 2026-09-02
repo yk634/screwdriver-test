@@ -1,0 +1,13 @@
+childPipelines:
+  scmUrls:
+    - git@github.com:yk634/screwdriver-test.git#external-config:dir1
+    - git@github.com:yk634/screwdriver-test.git#external-config:dir2
+ 
+jobs:
+  test:
+    requires: [ ~commit, ~pr ]
+    environment:
+      SD_SKIP_REPOSITORY_CLONE: true
+    image: node:22
+    steps:
+      - echo "This is test job"
